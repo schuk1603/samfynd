@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ── SamFynd Finance Terminal — Dark-First Palette ── */
+/* Deep navy-charcoal surfaces, electric blue accent, monospace data */
+
+:root {
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs: clamp(0.6875rem, 0.65rem + 0.2vw, 0.75rem);
+  --text-sm: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-base: clamp(0.875rem, 0.82rem + 0.28vw, 1rem);
+  --text-lg: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  --transition: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── LIGHT MODE (rarely used — finance terminals are dark) ── */
+:root, [data-theme='light'] {
+  --background: 220 20% 97%;
+  --foreground: 220 25% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 25% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 25% 10%;
+  --primary: 213 94% 52%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 15% 92%;
+  --secondary-foreground: 220 25% 20%;
+  --muted: 220 15% 94%;
+  --muted-foreground: 220 10% 50%;
+  --accent: 213 94% 52%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 13% 88%;
+  --input: 220 13% 88%;
+  --ring: 213 94% 52%;
+  --chart-1: 213 94% 52%;
+  --chart-2: 152 60% 44%;
+  --chart-3: 38 92% 50%;
+  --chart-4: 262 80% 60%;
+  --chart-5: 0 84% 60%;
+  --radius: 0.375rem;
+  --sidebar-background: 220 20% 95%;
+  --sidebar-foreground: 220 25% 15%;
+  --sidebar-primary: 213 94% 52%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 220 15% 90%;
+  --sidebar-accent-foreground: 220 25% 15%;
+  --sidebar-border: 220 13% 88%;
+  --sidebar-ring: 213 94% 52%;
+}
+
+/* ── DARK MODE (primary finance terminal aesthetic) ── */
+.dark, [data-theme='dark'] {
+  --background: 222 28% 7%;
+  --foreground: 210 15% 88%;
+  --card: 222 24% 10%;
+  --card-foreground: 210 15% 88%;
+  --popover: 222 24% 10%;
+  --popover-foreground: 210 15% 88%;
+  --primary: 213 94% 60%;
+  --primary-foreground: 222 28% 7%;
+  --secondary: 222 20% 14%;
+  --secondary-foreground: 210 15% 80%;
+  --muted: 222 20% 13%;
+  --muted-foreground: 210 10% 50%;
+  --accent: 213 94% 60%;
+  --accent-foreground: 222 28% 7%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 222 16% 18%;
+  --input: 222 16% 18%;
+  --ring: 213 94% 60%;
+  --chart-1: 213 94% 60%;
+  --chart-2: 152 60% 50%;
+  --chart-3: 38 92% 58%;
+  --chart-4: 262 80% 68%;
+  --chart-5: 0 84% 65%;
+  --radius: 0.375rem;
+  --sidebar-background: 222 24% 8%;
+  --sidebar-foreground: 210 15% 80%;
+  --sidebar-primary: 213 94% 60%;
+  --sidebar-primary-foreground: 222 28% 7%;
+  --sidebar-accent: 222 20% 13%;
+  --sidebar-accent-foreground: 210 15% 80%;
+  --sidebar-border: 222 16% 16%;
+  --sidebar-ring: 213 94% 60%;
+}
+
+/* ── Base Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* Force dark mode by default for this finance app */
+html { color-scheme: dark; }
+
+/* ── Data Typography ── */
+.font-mono, .tabular-nums {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum";
+}
+
+/* ── Color Utilities ── */
+.text-up { color: hsl(142 71% 52%); }
+.text-down { color: hsl(0 84% 62%); }
+.text-flat { color: hsl(210 10% 55%); }
+.bg-up-subtle { background-color: hsl(142 71% 52% / 0.1); }
+.bg-down-subtle { background-color: hsl(0 84% 62% / 0.1); }
+.bg-up-pulse { animation: pulse-up 0.6s ease-out; }
+.bg-down-pulse { animation: pulse-down 0.6s ease-out; }
+
+/* ── Conviction Indicators ── */
+.conviction-1 { color: hsl(210 10% 55%); }
+.conviction-2 { color: hsl(38 92% 58%); }
+.conviction-3 { color: hsl(38 92% 58%); }
+.conviction-4 { color: hsl(213 94% 60%); }
+.conviction-5 { color: hsl(213 94% 80%); }
+
+/* ── Terminal-style scrollbar ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(222 16% 24%); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(222 16% 32%); }
+
+/* ── Glows / Borders ── */
+.glow-blue { box-shadow: 0 0 0 1px hsl(213 94% 60% / 0.3), 0 0 20px hsl(213 94% 60% / 0.08); }
+.border-glow { border-color: hsl(213 94% 60% / 0.4) !important; }
+
+/* ── Animations ── */
+@keyframes pulse-up {
+  0% { background-color: hsl(142 71% 52% / 0.25); }
+  100% { background-color: transparent; }
+}
+@keyframes pulse-down {
+  0% { background-color: hsl(0 84% 62% / 0.25); }
+  100% { background-color: transparent; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
+.animate-spin { animation: spin 1s linear infinite; }
+
+/* ── Ticker Tape ── */
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-scroll { animation: tickerScroll 40s linear infinite; }
+.ticker-scroll:hover { animation-play-state: paused; }
+
+/* ── Layout ── */
+html, body { overflow: hidden; }
+#root { height: 100dvh; display: flex; flex-direction: column; }
+
+/* ── Signal Badges ── */
+.badge-bullish {
+  background-color: hsl(142 71% 52% / 0.15);
+  color: hsl(142 71% 52%);
+  border: 1px solid hsl(142 71% 52% / 0.3);
+}
+.badge-bearish {
+  background-color: hsl(0 84% 62% / 0.15);
+  color: hsl(0 84% 62%);
+  border: 1px solid hsl(0 84% 62% / 0.3);
+}
+.badge-neutral {
+  background-color: hsl(210 10% 55% / 0.15);
+  color: hsl(210 10% 65%);
+  border: 1px solid hsl(210 10% 55% / 0.3);
+}
+
+/* ── Table Styles ── */
+.data-table thead tr { 
+  border-bottom: 1px solid hsl(var(--border));
+}
+.data-table tbody tr:hover {
+  background-color: hsl(var(--muted) / 0.5);
+  cursor: pointer;
+}
+.data-table th {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  white-space: nowrap;
+}
+.data-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid hsl(var(--border) / 0.5);
+  font-size: var(--text-sm);
+}
+
+/* ── Focus ── */
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+@layer base {
+  * { border-color: hsl(var(--border)); }
+  body { background-color: hsl(var(--background)); color: hsl(var(--foreground)); }
+}
